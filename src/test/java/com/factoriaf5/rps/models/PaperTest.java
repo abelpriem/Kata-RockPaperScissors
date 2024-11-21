@@ -7,8 +7,9 @@ import org.junit.jupiter.api.Test;
 public class PaperTest {
 
     Paper paper = new Paper();
+    Spock spock = new Spock("spock");
     Rock rock = new Rock("rock");
-    Scissors scissor = new Scissors("scissors");
+    Scissors scissors = new Scissors("scissors");
 
     @Test
     void testSetter() {
@@ -25,20 +26,32 @@ public class PaperTest {
     }
 
     @Test
-    void testCoversSuccess() {
-        String result = paper.covers(rock.getName());
+    void testPlaysWithCovers() {
+        String result = paper.play(rock.getName());
         assertEquals(result, "Paper covers Rock");
     }
 
     @Test
-    void testCoversNoSuccess() {
-        String result = paper.covers(scissor.getName());
-        assertEquals(result, "Paper can't cover scissors");
+    void testPlaysWithNullInCovers() {
+        String result = paper.covers("lizard");
+        assertEquals(result, null);
     }
 
     @Test
-    void testCoversWithSameItem() {
-        String result = paper.covers(paper.getName());
-        assertEquals(result, "Paper VS paper.. Nothing");
+    void testPlaysWithDisproves() {
+        String result = paper.play(spock.getName());
+        assertEquals(result, "Paper disproves Spock");
+    }
+
+    @Test
+    void testPlaysWithNullInDisproves() {
+        String result = paper.disproves("rock");
+        assertEquals(result, null);
+    }
+
+    @Test
+    void testPlaysWithOther() {
+        String result = paper.play(scissors.getName());
+        assertEquals(result, "Paper can't cover or disproves " + scissors.getName());
     }
 }

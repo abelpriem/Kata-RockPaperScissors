@@ -1,6 +1,8 @@
 package com.factoriaf5.rps.models;
 
-public class Rock {
+import com.factoriaf5.rps.application.Sheldon;
+
+public class Rock implements Sheldon {
     public String name;
 
     public Rock(String name) {
@@ -22,10 +24,25 @@ public class Rock {
     public String crush(String name) {
         if (name == "scissors") {
             return "Rock crush Scissors";
-        } else if (name == this.name) {
-            return "Rock VS rock.. Nothing";
+        } else if (name == "lizard") {
+            return "Rock crush Lizard";
         }
 
         return "Rock can't crush " + name;
+    }
+
+    @Override
+    public String play(String name) {
+        String result;
+
+        if (name.equals("scissors")) {
+            result = crush("scissors");
+        } else if (name.equals("lizard")) {
+            result = crush("lizard");
+        } else {
+            result = crush(name);
+        }
+
+        return result;
     }
 }

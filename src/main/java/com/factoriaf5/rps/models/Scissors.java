@@ -1,6 +1,8 @@
 package com.factoriaf5.rps.models;
 
-public class Scissors {
+import com.factoriaf5.rps.application.Sheldon;
+
+public class Scissors implements Sheldon {
     public String name;
 
     public Scissors(String name) {
@@ -22,10 +24,31 @@ public class Scissors {
     public String cut(String name) {
         if (name == "paper") {
             return "Scissors cuts Paper";
-        } else if (name == this.name) {
-            return "Scissors VS Scissors... Nothing";
         }
 
-        return "Scissors can't cut " + name;
+        return null;
+    }
+
+    public String decapitates(String name) {
+        if (name == "lizard") {
+            return "Scissors decapitates Lizard";
+        }
+
+        return null;
+    }
+
+    @Override
+    public String play(String name) {
+        String result;
+
+        if (name.equals("paper")) {
+            result = cut("paper");
+        } else if (name.equals("lizard")) {
+            result = decapitates("lizard");
+        } else {
+            result = "Scissors can't cut or decapitates " + name;
+        }
+
+        return result;
     }
 }

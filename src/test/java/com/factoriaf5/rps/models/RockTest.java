@@ -7,8 +7,9 @@ import org.junit.jupiter.api.Test;
 public class RockTest {
 
     Rock rock = new Rock();
-    Paper paper = new Paper("paper");
     Scissors scissor = new Scissors("scissors");
+    Lizard lizard = new Lizard("lizard");
+    Paper paper = new Paper("paper");
 
     @Test
     void testSetter() {
@@ -25,20 +26,20 @@ public class RockTest {
     }
 
     @Test
-    void testCrushSuccess() {
-        String result = rock.crush(scissor.getName());
+    void testPlaysWithLizard() {
+        String result = rock.play(lizard.getName());
+        assertEquals(result, "Rock crush Lizard");
+    }
+
+    @Test
+    void testPlaysWithScissors() {
+        String result = rock.play(scissor.getName());
         assertEquals(result, "Rock crush Scissors");
     }
 
     @Test
-    void testCrushNoSuccess() {
-        String result = rock.crush(paper.getName());
-        assertEquals(result, "Rock can't crush paper");
-    }
-
-    @Test
-    void testCrushWithSameItem() {
-        String result = rock.crush(rock.getName());
-        assertEquals(result, "Rock VS rock.. Nothing");
+    void testPlayWithOther() {
+        String result = rock.play(paper.getName());
+        assertEquals(result, "Rock can't crush " + paper.getName());
     }
 }

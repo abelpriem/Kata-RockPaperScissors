@@ -6,9 +6,10 @@ import org.junit.jupiter.api.Test;
 
 public class ScissorsTest {
 
-    Paper paper = new Paper("paper");
-    Rock rock = new Rock("rock");
     Scissors scissors = new Scissors();
+    Paper paper = new Paper("paper");
+    Lizard lizard = new Lizard("lizard");
+    Rock rock = new Rock("rock");
 
     @Test
     void testSetter() {
@@ -25,20 +26,32 @@ public class ScissorsTest {
     }
 
     @Test
-    void testCutSuccess() {
-        String result = scissors.cut(paper.getName());
+    void testPlaysWithCut() {
+        String result = scissors.play(paper.getName());
         assertEquals(result, "Scissors cuts Paper");
     }
 
     @Test
-    void testCoversNoSuccess() {
+    void testPlaysWithNullInCut() {
         String result = scissors.cut(rock.getName());
-        assertEquals(result, "Scissors can't cut rock");
+        assertEquals(result, null);
     }
 
     @Test
-    void testCoversWithSameItem() {
-        String result = scissors.cut(scissors.getName());
-        assertEquals(result, "Scissors VS Scissors... Nothing");
+    void testPlaysWithDecapitates() {
+        String result = scissors.play(lizard.getName());
+        assertEquals(result, "Scissors decapitates Lizard");
+    }
+
+    @Test
+    void testPlaysWithNullInDecapitates() {
+        String result = scissors.decapitates(rock.getName());
+        assertEquals(result, null);
+    }
+
+    @Test
+    void testPlaysWithOthers() {
+        String result = scissors.play(rock.getName());
+        assertEquals(result, "Scissors can't cut or decapitates " + rock.getName());
     }
 }

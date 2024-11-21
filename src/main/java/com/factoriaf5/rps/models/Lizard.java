@@ -2,14 +2,14 @@ package com.factoriaf5.rps.models;
 
 import com.factoriaf5.rps.application.Sheldon;
 
-public class Paper implements Sheldon {
+public class Lizard implements Sheldon {
     public String name;
 
-    public Paper(String name) {
+    public Lizard(String name) {
         this.name = name;
     }
 
-    public Paper() {
+    public Lizard() {
 
     }
 
@@ -21,17 +21,17 @@ public class Paper implements Sheldon {
         this.name = name;
     }
 
-    public String covers(String name) {
-        if (name == "rock") {
-            return "Paper covers Rock";
+    public String eats(String name) {
+        if (name == "paper") {
+            return "Lizard eats Paper";
         }
 
         return null;
     }
 
-    public String disproves(String name) {
+    public String poisons(String name) {
         if (name == "spock") {
-            return "Paper disproves Spock";
+            return "Lizard poisons Spock";
         }
 
         return null;
@@ -41,12 +41,12 @@ public class Paper implements Sheldon {
     public String play(String name) {
         String result;
 
-        if (name.equals("rock")) {
-            result = covers("rock");
+        if (name.equals("paper")) {
+            result = eats("paper");
         } else if (name.equals("spock")) {
-            result = disproves("spock");
+            result = poisons("spock");
         } else {
-            result = "Paper can't cover or disproves " + name;
+            result = "Lizard can't eat or poison " + name;
         }
 
         return result;
